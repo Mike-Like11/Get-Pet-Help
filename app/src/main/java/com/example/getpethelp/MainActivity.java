@@ -75,4 +75,72 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void showRegisterWindow(){
+    final AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+    dialog.setTitle("Зарегистрироваться");
+    dialog.setPositiveButton("Добавить",null);
+    dialog.setNegativeButton("отменить",null);
+    dialog.setMessage("Введите все ваши данные для регистрации");
+    LayoutInflater inflater=LayoutInflater.from(this);
+    View register_window=inflater.inflate(R.layout.register_window,null);
+    dialog.setView(register_window);
+dialog.setCancelable(false);
+   final MaterialEditText email=register_window.findViewById(R.id.emailField);
+   final MaterialEditText name=register_window.findViewById(R.id.nameField);
+   final MaterialEditText phone=register_window.findViewById(R.id.telephoneField);
+   final MaterialEditText pass=register_window.findViewById(R.id.parolField);
+  dialog.setNegativeButton("Отменить", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface , int which) {
+            dialogInterface.dismiss();
+        }
+    });
+
+    dialog.setPositiveButton("Добавить", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(final DialogInterface dialogInterface , int which) {
+
+
+            }
+    });
+
+final AlertDialog dialog1=dialog.create();
+dialog1.show();
+dialog1.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        if(TextUtils.isEmpty(email.getText().toString())){
+            email.setError("Введите вашу почту");
+
+
+
+        }
+        else {
+            if (TextUtils.isEmpty(name.getText().toString())) {
+                name.setError("Введите ваше имя");
+
+                return;
+
+            } else {
+                if (TextUtils.isEmpty(phone.getText().toString())) {
+                    phone.setError("Введите ваш телефон");
+
+                    return;
+
+                } else {
+                    if (pass.getText().toString().length() < 5) {
+                        pass.setError("Введите ваш пароль(более 5 символов)");
+
+                        return;
+                    } else {
+
+                       
+                    }
+                }
+            }
+        }
+    }
+});
+}
 }
